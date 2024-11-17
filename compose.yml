@@ -3,12 +3,17 @@ services:
     image: docker.io/postgres:14.8-alpine3.18
     restart: always
     container_name: test_db_container
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -d test_db -U test_user"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
     environment:
       POSTGRES_DB: "test_db"
       POSTGRES_USER: "test_user"
       POSTGRES_PASSWORD: "password"
     ports:
-      - "5433:5432"
+      - "5432:5432"
     volumes:
       - ./db_dump:/docker-entrypoint-initdb.d
 
@@ -20,7 +25,7 @@ services:
     network_mode: "host"
     depends_on:
       testdb:
-        condition: service_started
+        condition: service_healthy
     volumes:
       - shared-volume:/app/templates/
     command: ["pytest", "/app/test_db_operations.py", "-s", "-v", "--html=/app/templates/report.html", "--self-contained-html"]
@@ -32,8 +37,8 @@ services:
     restart: always
     container_name: flask_test_results
     depends_on:
-          testdb:
-            condition: service_started
+      testdb:
+        condition: service_healthy
     volumes:
       - shared-volume:/app/templates/
     ports:
