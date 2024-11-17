@@ -23,7 +23,6 @@ services:
         condition: service_started
     volumes:
       - shared-volume:/app/templates/
-    #command: ["tail", "-f", "/dev/null"]
     command: ["pytest", "/app/test_db_operations.py", "-s", "-v", "--html=/app/templates/report.html", "--self-contained-html"]
     
   flasktestresults:
@@ -32,7 +31,6 @@ services:
       dockerfile: ./Dockerfile.flask
     restart: always
     container_name: flask_test_results
-#    network_mode: "host"
     depends_on:
           testdb:
             condition: service_started
