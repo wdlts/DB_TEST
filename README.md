@@ -2,8 +2,8 @@
 
 PROJECT STRUCTURE
 
-├── compose.yml - compose file to create testing environment and run tests
-    ├── db_dump
+├── compose.yml - compose file to create testing environment and run tests<\n>
+    ├── db_dump<\n>
     │   └── test_db.sql - basic test database schema
     ├── Dockerfile.flask - dockerfile for flask application, exposing pytet report
     ├── Dockerfile.pytest - dockerfile for pytest application, running database tests
