@@ -1,26 +1,26 @@
-# DB_TEST
+# DATABASE TEST
 
 PROJECT STRUCTURE
 
-├── compose.yml - compose file to create testing environment and run tests
-├── db_dump
-│   └── test_db.sql - test_db.sql - basic test database schema
-├── Dockerfile.flask - dockerfile for flask application, exposing pytet report
-├── Dockerfile.pytest - dockerfile for pytest application, running database tests
-├── python_flask
-│   ├── flask_test_results.py - flask application exposing pytest report
-│   ├── requirements.txt - requirements to create flask application
-│   └── templates - empty folder to store test report
-├── python_tests
-│   ├── conftest.py - basic settings/fixtures
-│   ├── database.py - database connection file
-│   ├── pytest.ini - pytest settings
-│   ├── requirements.txt - requirements to create pytest application
-│   ├── t_data.py - test data
-│   └── test_db_operations.py - database tests
-├── README.md - readme file
-└── XLSX
-    └── test_cases.xlsx - test cases in XLSX file
+├── compose.yml - compose file to create testing environment and run tests <br>
+├── db_dump <br>
+│   └── test_db.sql - test_db.sql - basic test database schema <br>
+├── Dockerfile.flask - dockerfile for flask application, exposing pytet report <br>
+├── Dockerfile.pytest - dockerfile for pytest application, running database tests <br>
+├── python_flask <br>
+│   ├── flask_test_results.py - flask application exposing pytest report <br>
+│   ├── requirements.txt - requirements to create flask application <br>
+│   └── templates - empty folder to store test report <br>
+├── python_tests <br>
+│   ├── conftest.py - basic settings/fixtures <br>
+│   ├── database.py - database connection file <br>
+│   ├── pytest.ini - pytest settings <br>
+│   ├── requirements.txt - requirements to create pytest application <br>
+│   ├── t_data.py - test data <br>
+│   └── test_db_operations.py - database tests <br>
+├── README.md - readme file <br>
+└── XLSX <br>
+    └── test_cases.xlsx - test cases in XLSX file <br>
 
 
 HOW TO
