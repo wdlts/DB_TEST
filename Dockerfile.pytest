@@ -1,0 +1,3 @@
+FROM docker.io/python:3.11-slim
+COPY ./python_tests/ ./app/
+RUN ["pip", "install", "-r", "/app/requirements.txt"]

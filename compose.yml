@@ -8,6 +8,40 @@ services:
       POSTGRES_USER: "test_user"
       POSTGRES_PASSWORD: "password"
     ports:
-      - "5432:5432"
+      - "5433:5432"
     volumes:
       - ./db_dump:/docker-entrypoint-initdb.d
+
+  testapppytest:
+    build:
+      context: .
+      dockerfile: ./Dockerfile.pytest
+    container_name: test_app_pytest
+    network_mode: "host"
+    depends_on:
+      testdb:
+        condition: service_started
+    volumes:
+      - shared-volume:/app/templates/
+    #command: ["tail", "-f", "/dev/null"]
+    command: ["pytest", "/app/test_db_operations.py", "-s", "-v", "--html=/app/templates/report.html", "--self-contained-html"]
+    
+  flasktestresults:
+    build:
+      context: .
+      dockerfile: ./Dockerfile.flask
+    restart: always
+    container_name: flask_test_results
+#    network_mode: "host"
+    depends_on:
+          testdb:
+            condition: service_started
+    volumes:
+      - shared-volume:/app/templates/
+    ports:
+      - "5000:5000"
+    command: ["python3", "/app/flask_test_results.py"]
+
+
+volumes:
+  shared-volume:
